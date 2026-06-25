@@ -16,14 +16,14 @@ public class FacturaService {
 
     public void guardar(Factura factura) {
 
-        factura.persist();
-        //this.facturaRepositoryImpl.persist(factura);
+        //factura.persist();
+        this.facturaRepositoryImpl.persist(factura);
     }
 
     public Factura buscarPorId(Integer id) {
 
-        return Factura.findById(id);
-        //return this.facturaRepositoryImpl.findById(id);
+        //return Factura.findById(id);
+        return this.facturaRepositoryImpl.findById(id);
     }
 
 }
