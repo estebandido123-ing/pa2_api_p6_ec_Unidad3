@@ -26,6 +26,12 @@ public class Main {
         @Override
         public int run(String... args) throws Exception {
 
+            String nombreHilo = Thread.currentThread().getName();
+            System.out.println("Nombre del hilo Main " + nombreHilo); 
+
+            System.out.println("ID" + Thread.currentThread().threadId());
+
+
             System.out.println("Conexion a la base de datos POSTGRES!");
 
             Factura factura = new Factura();
@@ -39,7 +45,20 @@ public class Main {
             //System.err.println("Numero: "+ fac.getNumero());
             
             Quarkus.waitForExit();
-            return 0;        
+            return 0;
+            
+            
+
+            //para cierto tipos de logica, pq no es para todo, unicamente cuando las 
+            //dos cosas no dependen del uno del otro, solo ahi es cuando se puede ejecuar 
+            //en paralelo
+            //, en paralelo, se dice que es cuando se ejecutan dos o mas hilos en el 
+            //mismo momento
+            //la programacion en paralelo, si necesita ejecutar un metodo, ejecuta un hilo 
+            //pero si quiere ejecutar otro metodo, ejecutara otro hilo
+            // cuando necesito optimizar tiempo de ejecucuion, cuando se tiene escenarios 
+            // altamente demandantes (alata concurrencia), para evitar o mejorar los tiemmpos de demora en recibir l
+            // la respuesta    
         }
     }
 }
