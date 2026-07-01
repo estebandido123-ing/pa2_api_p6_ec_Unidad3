@@ -1,8 +1,5 @@
 
-import java.time.LocalDate;
-
-import ec.com.uce.Application.service.FacturaService;
-import ec.com.uce.Domain.model.Factura;
+import ec.com.uce.Application.service.PedidoService;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -19,25 +16,19 @@ public class Main {
     public static class App implements QuarkusApplication {
 
         @Inject
-        private FacturaService facturaService;
-        
-        
+        private PedidoService pedidoService;
 
         @Override
         public int run(String... args) throws Exception {
 
-            System.out.println("Conexion a la base de datos POSTGRES!");
+            System.out.println(" CONEXION A BASE DE DATOS");
+            System.out.println(" DEBER 18: PRUEBA DE INTERCEPTORES, HILOS");
 
-            Factura factura = new Factura();
-            factura.setFecha(LocalDate.of(2023, 12, 1));
-            factura.setNumero("1521254124");
-            factura.setRUC("12131451");
+            // Ejecutamos el método 
+            pedidoService.procesarPedidoCompleto();
 
-            this.facturaService.guardar(factura);
+            System.out.println(" FLUJO DE PROCESAMIENTO FINALIZADO EXITOSAMENTE");
 
-            //Factura fac = this.facturaService.buscarPorId(1);
-            //System.err.println("Numero: "+ fac.getNumero());
-            
             Quarkus.waitForExit();
             return 0;        
         }
