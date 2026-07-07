@@ -3,7 +3,6 @@ package ec.com.uce.Application.service;
 import java.time.LocalDate;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 import ec.com.uce.Domain.model.Factura;
 import ec.com.uce.Domain.model.Mail;
@@ -26,7 +25,7 @@ public class FacturaServiceParalelo {
     private ReporteService reporteService;
 
 
-    public void guardar(Factura factura) {
+    public void guardar(Factura factura) throws Exception{
 
         String nombreHilo = Thread.currentThread().getName();
         System.out.println("Nombre del hilo FacturaService " + nombreHilo); 
@@ -48,18 +47,27 @@ public class FacturaServiceParalelo {
         rep.setAutor("manuel");
         rep.setTipo("reporte de factura");
         rep.setFechaGeneracion(LocalDate.of(2002, 2, 2));
-        ReporteServiceTarea  reporteTarea = new ReporteServiceTarea(rep, reporteService);
-        Future <?> reporyFuture = executorService.submit(reporteTarea);
+        //ReporteServiceTarea  reporteTarea = new ReporteServiceTarea(rep, reporteService);
+        //Future <?> reporyFuture = executorService.submit(reporteTarea);
+
+        
 
         // C) Guardar Mail 
         Mail mail = new Mail();
         mail.setAsunto("Nuevo mail");
         mail.setCuerpo("Asunto pendiente");
         mail.setDestinatario("jose");
-        MailServiceTarea mailTarea =  new MailServiceTarea(mail, mailService);
-        Future <?> mailFuture = executorService.submit(mailTarea);
+        //MailServiceTarea mailTarea =  new MailServiceTarea(mail, mailService);
+        //Future <?> mailFuture = executorService.submit(mailTarea);
 
+
+        //reporyFuture.get();
+
+        //mailFuture.get();
         
+        executorService.shutdown();
+
+        /*
         try {
             Thread.sleep(10000);
             //reporyFuture.get();
@@ -67,8 +75,8 @@ public class FacturaServiceParalelo {
         } catch (Exception e) {
 
         }
-
-        executorService.shutdown();
+        */
+        
 
        
 

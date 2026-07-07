@@ -3,6 +3,7 @@ import java.time.LocalDate;
 
 import ec.com.uce.Application.service.FacturaService;
 import ec.com.uce.Application.service.FacturaServiceParalelo;
+import ec.com.uce.Application.service.facturaServiceCompletableFuture;
 import ec.com.uce.Domain.model.Factura;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
@@ -25,6 +26,9 @@ public class Main {
         @Inject
         private FacturaServiceParalelo facturaServiceParalelo;
 
+        @Inject
+        private facturaServiceCompletableFuture factuFuture;
+
         @Override
         public int run(String... args) throws Exception {
 
@@ -43,7 +47,11 @@ public class Main {
 
             //this.facturaService.guardar(factura);
 
-            this.facturaServiceParalelo.guardar(factura);
+            //this.facturaServiceParalelo.guardar(factura);
+
+            this.factuFuture.guardar(factura);
+
+            
 
             //Factura fac = this.facturaService.buscarPorId(1);
             //System.err.println("Numero: "+ fac.getNumero());

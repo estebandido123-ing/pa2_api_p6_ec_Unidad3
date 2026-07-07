@@ -1,20 +1,17 @@
 package ec.com.uce.Application.service;
 
 import ec.com.uce.Domain.model.Mail;
+import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Inject;
 
 
-
+@Dependent
 public class MailServiceTarea implements Runnable{
 
-    //@Inject
+    @Inject
     private MailService mailService;
 
     private Mail mail;
-
-    public MailServiceTarea(Mail mail, MailService mailService){
-        this.mail = mail;
-        this.mailService = mailService;
-    }
 
     @Override
     public void run(){
