@@ -37,4 +37,13 @@ public class EstudianteService {
         return this.estudianteRepository.findById(id);
     }
 
+    @MedidorTiempo 
+    public void guardarlistaestudiantes(java.util.List<Estudiante> estudiantes) {
+        
+        // Panache procesa toda la lista automáticamente
+        this.estudianteRepository.persist(estudiantes);
+        
+        System.out.println("Se ha guardado un bloque de " + estudiantes.size() + " estudiantes en la base de datos.");
+    }
+
 }

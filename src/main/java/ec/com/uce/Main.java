@@ -45,9 +45,21 @@ public class Main {
             estudianteService.eliminar(idParaEliminar);
             // El interceptor guardará en Auditoria: "1 |" 
 
-            
+            for (int i = 1; i <= 10; i++) {
+                Estudiante estDinamico = new Estudiante();
+                estDinamico.setNombre("Estudiante Individual " + i);
+                estDinamico.setMatricula("MAT-IND-" + i);
+                
+                // Esto llamará a tu ArchivoInterceptor 10 veces y hará 10 inserts separados
+                estudianteService.crear(estDinamico); 
+            }
+
             System.out.println("Todos los métodos fueron auditados correctamente en PostgreSQL.");
             
+            //paralaleStrim, tiene un enfoque en procesar en paralelo, una misma accion para un 
+            // connjuto de datos, un conjunto de elementos sobre el cual vamos a ejecutar un 
+            // alugnas operaciones de procesamiento 
+
 
             Quarkus.waitForExit();
             return 0;        
