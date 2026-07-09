@@ -39,7 +39,7 @@ public class FacturaServiceCompletaFuture {
         //this.rs.guardarReporte(r);
 
         //defino un retorno se define void
-        CompletableFuture<Void> cr = CompletableFuture.runAsync(()->this.rs.guardarReporte(r));
+        //CompletableFuture<Void> cr = CompletableFuture.runAsync(()->this.rs.guardarReporte(r));
         //Esta tarea se ejecuta de manera asincrona o de manera paralela
         Mail m = new Mail();
         m.setAsunto("Factura");
@@ -50,7 +50,7 @@ public class FacturaServiceCompletaFuture {
         CompletableFuture<Void> cm = CompletableFuture.runAsync(()->this.ms.guardarMail(m));
 
         //espera hastq que las 2 tareas/hilos se terminen 
-        CompletableFuture.allOf(cr,cm).join();
+        //CompletableFuture.allOf(cr,cm).join();
 
 
 

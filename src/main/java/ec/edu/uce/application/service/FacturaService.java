@@ -24,7 +24,7 @@ public class FacturaService {
     private MailService ms;
 
     @MedirTiempo
-    public void guardar(Factura factura) {
+    public void guardar(Factura factura) throws InterruptedException {
 
         String nombreHilo = Thread.currentThread().getName();
         System.out.println("nombre del hilo FACTURASERVICE:" + nombreHilo);
