@@ -6,7 +6,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
-@Transactional(Transactional.TxType.REQUIRES_NEW) // Crea una nueva transacción independiente para asegurar que la auditoría siempre se guarde
+@Transactional(Transactional.TxType.REQUIRES_NEW) 
 @ApplicationScoped
 public class AuditoriaService {
 

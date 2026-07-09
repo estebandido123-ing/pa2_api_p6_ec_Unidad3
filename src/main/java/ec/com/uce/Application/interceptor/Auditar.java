@@ -13,26 +13,25 @@ import jakarta.interceptor.InvocationContext;
 @MedidorTiempo
 @Interceptor
 @Priority(Interceptor.Priority.APPLICATION)
-public class MedidorTiempoInterceptor {
+public class Auditar {
 
     @Inject
-    private AuditoriaService auditoriaService; // Inyectamos el servicio para guardar en BD
-
+    private AuditoriaService auditoriaService; 
     @AroundInvoke
     public Object medir(InvocationContext context) throws Exception {
         
         long inicio = System.currentTimeMillis();
         
-        // Ejecuta el método original (crear, actualizar o eliminar)
+        
         Object resultado = context.proceed();
         
         long fin = System.currentTimeMillis();
         long tiempoTotal = fin - inicio;
 
-        // 1. Obtener el nombre del método
+        
         String nombreMetodo = context.getMethod().getName();
 
-        // 2. Extraer los argumentos recibidos y usar su toString()
+        
         StringBuilder argumentosStr = new StringBuilder();
         if (context.getParameters() != null && context.getParameters().length > 0) {
             for (Object param : context.getParameters()) {
@@ -59,5 +58,7 @@ public class MedidorTiempoInterceptor {
         System.out.println("Auditoría] Registro guardado en BD -> Método: " + nombreMetodo + " | Tiempo: " + tiempoTotal + " ms");
 
         return resultado;
+
+        //cada vez que se guarde un estudiante, se va disparar un interseptor llamado archivo interceptor
     }
 }

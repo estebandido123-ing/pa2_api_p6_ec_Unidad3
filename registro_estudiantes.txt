@@ -1,0 +1,1 @@
+[2026-07-08T19:10:19.930982500] ESTUDIANTE CREADO -> Estudiante [id=1, nombre=Esteban, matricula=MATRICULA1]
