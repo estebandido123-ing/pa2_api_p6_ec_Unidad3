@@ -1,8 +1,15 @@
 package ec.edu.uce.domain.model;
 
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "auditoria")
@@ -17,7 +24,7 @@ public class Auditoria {
     @Column(name = "audi_nombre_metodo")
     private String nombreMetodo;
 
-    @Column(name = "audi_argumentos")
+    @Column(name = "audi_argumentos", columnDefinition = "TEXT")
     private String argumentos;
 
     @Column(name = "audi_fecha_hora_ejecucion")

@@ -17,7 +17,6 @@ public class ReporteService {
         String nombreHilo = Thread.currentThread().getName();
         System.out.println("nombre del hilo REPORTESERVICE:" + nombreHilo);
         System.out.println("ID: " + Thread.currentThread().threadId());
-        Thread.sleep(3000);
 
         reporte.persist();
 
@@ -31,6 +30,20 @@ public class ReporteService {
 
         }
 
+    }
+
+    @Auditar
+    public void guardarListaReportesParalelo(List<Reporte> lista) {
+        lista.parallelStream().forEach(rep -> {
+            // Aqui programo toda la logica qye quieor que se aplique a cada item
+            try {
+                this.guardarReporte(rep);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        });
+ 
     }
 
     public Reporte buscarReporteporId(Integer id) {
