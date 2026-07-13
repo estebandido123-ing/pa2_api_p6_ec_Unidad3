@@ -19,12 +19,7 @@ public class MedirTiempoInterceptor {
             return context.proceed();
         } finally {
             long fin = System.currentTimeMillis();
-
-            System.out.println("⏱️ [MedirTiempo] " 
-                + context.getMethod().getName() 
-                + " tardó " 
-                + (fin - inicio) 
-                + " ms");
+            // System.out.println(" [MedirTiempo] " + context.getMethod().getName() + " tardó " + (fin - inicio) + " ms");
         }
     }
 }
